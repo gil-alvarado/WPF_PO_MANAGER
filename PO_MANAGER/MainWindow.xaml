@@ -1,0 +1,62 @@
+﻿<Window x:Class="PO_MANAGER.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:views="clr-namespace:PO_MANAGER.Views"
+        xmlns:reportViews="clr-namespace:PO_MANAGER.Views.ReportViews"
+        xmlns:vms="clr-namespace:PO_MANAGER.ViewModels" xmlns:components="clr-namespace:PO_MANAGER.Components" xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="1000" Background="#fffff0"
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:LoginViewModel}">
+                <views:LoginView/>
+            </DataTemplate>
+            <!---->
+            <DataTemplate DataType="{x:Type vms:AddPersonViewModel}">
+                <views:AddPersonView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vms:PurchaseOrderListingViewModel}">
+                <views:PurchaseOrderListingView/>
+            </DataTemplate>
+            <!---->
+            <DataTemplate DataType="{x:Type vms:CreatePurchaseOrderViewModel}">
+                <views:CreatePurchaseOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:NotesViewModel}">
+                <views:PurchaseOrderNotesView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:EditPurchaseOrderViewModel}">
+                <views:EditPurchaseOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:ManageUsersViewModel}">
+                <views:ManageUsersView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:CreatePoReportViewModel}">
+                <reportViews:CreateReportListingView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:LayoutViewModel}">
+                <components:Layout/>
+            </DataTemplate>
+        </Grid.Resources>
+        
+        <custom:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+            <ContentControl Content="{Binding CurrentModalViewModel}"/>
+        </custom:Modal>
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+
+    </Grid>
+
+
+</Window>

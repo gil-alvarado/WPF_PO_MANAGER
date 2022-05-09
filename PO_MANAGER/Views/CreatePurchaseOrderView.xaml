@@ -1,0 +1,309 @@
+﻿<UserControl x:Class="PO_MANAGER.Views.CreatePurchaseOrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:components="clr-namespace:PO_MANAGER.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Background="#fffff0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <!--PO and Attatchment Fields-->
+                <RowDefinition Height="*"/>
+                <!--notes-->
+            </Grid.RowDefinitions>
+
+            <!--TOP ROW-->
+            <Grid Grid.Row="0" Grid.Column="0" Background="#fffff0" Margin="3" Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                    <!--Purchase Order-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="PO:" Margin="0 5 0 5" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Margin="0 5 0 5" 
+                         Text="{Binding PurchaseOrder, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Bearing Number-->
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="BRG#:"
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Margin="0 5 0 5"
+                         Text="{Binding BearingNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+                
+                <!--Supplier-->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="1" Grid.Column="0" Content="SUPPLIER:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <!--
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0 5 0 5"
+                         Text="{Binding Supplier, UpdateSourceTrigger=PropertyChanged}"/>
+                -->
+                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="0 5 0 5" IsEditable="True"
+                         Text="{Binding Supplier, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Parameter-->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="PARAMETER:"  HorizontalContentAlignment="Right" 
+                       HorizontalAlignment="Stretch"  Margin="0 5 0 5" VerticalAlignment="Stretch"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Margin="0 5 0 5"
+                         Text="{Binding Parameter, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Confirmed/Status-->
+                    <!--Binding ComboBox Content-->
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="CONFIRMED:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Margin="0 5 0 5"
+                          ItemsSource="{Binding ConfirmationStatus}">
+                        <ComboBoxItem Content="YES" IsSelected="True"/>
+                        <ComboBoxItem Content="NO"/>
+                    </ComboBox>
+                </Grid>
+
+                <!--Quantity-->
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="QUANTITY:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Margin="0 5 0 5"
+                         Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Invoice Price-->
+                <Grid Grid.Row="3" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Invoice Price:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="0 5 0 5"
+                         Text="{Binding InvoicePrice, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Landing Cost-->
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Landing Cost:"
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Margin="0 5 0 5"
+                         Text="{Binding LandingCost, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Original Ship Date-->
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="ORG SHIP:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <DatePicker Grid.Column="1" Margin="0 5 0 5"
+                            Text="{Binding OriginalShipDate, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--ETA Date-->
+                <Grid Grid.Row="4" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="ETA:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <DatePicker Grid.Column="1" Margin="0 5 0 5"
+                            Text="{Binding EtaDate, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Current Ship Date-->
+                <Grid Grid.Row="5" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="CUR SHIP:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <DatePicker Grid.Column="1" Margin="0 5 0 5"
+                            Text="{Binding CurrentShipDate, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <!--Follow Up Date-->
+                <Grid Grid.Row="5" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="F/U DATE:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <DatePicker Grid.Column="1" Margin="0 5 0 5"
+                            Text="{Binding FollowUpDate, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+
+            </Grid>
+            <!--END TOP ROW-->
+            <!--Attachment Fields-->
+            <Grid Grid.Row="0" Grid.Column="1" Background="#fffff0" Margin="3" Grid.IsSharedSizeScope="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--LABELS ROW 0-->
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Attachments" FontSize="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </Grid>
+                <!--END LABELS-->
+
+                <!--list boxes, buttons ROW 1-->
+                <Grid Grid.Row="1" Margin="10,0,10,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <!--ATTACHMENT BUTTONS-->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Margin="10 5" Command="{Binding RemoveAttachmentCommand}" Width="auto" Padding="10 0">
+                            <TextBlock Text="Remove Attachment(s)" FontSize="10"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>
+                        <Button Grid.Column="2" Margin="10 5" Command="{Binding AddEmailCommand}" Width="auto" Padding="10 0">
+                            <TextBlock Text="Add Email" FontSize="10" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>
+                    </Grid>
+                    <!--END BUTTONS GRID-->
+
+                    <ListView Grid.Row="1"/>
+                </Grid>
+                <!--END LISTBOX, BUTTONS-->
+
+                <Grid Grid.Row="2">
+                    <!--ADD, UPDATE BUTTON FIELDS-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <!--HIDE ROWS-->
+                            <RowDefinition Name="AddPoRow">
+                                <!--ADD PO FIELDS-->
+                                <RowDefinition.Style>
+                                    <Style TargetType="{x:Type RowDefinition}">
+                                        <Setter Property="Height" Value="*" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SomeBoolProperty}" Value="True">
+                                                <Setter Property="Height" Value="0" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </RowDefinition.Style>
+                            </RowDefinition>
+
+
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <!--ADD PO BUTTONS-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" 
+                                Command="{Binding AddPoCommand}"
+                                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20 10 20 10">
+                                <TextBlock Text="ADD PO" TextWrapping="Wrap"/>
+                            </Button>
+                        </Grid>
+
+                    </Grid>
+                    <Button Grid.Column="1" 
+                        Command="{Binding CancelCommand}"
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20 10 20 10">
+                        <TextBlock Text="Cancel"/>
+                    </Button>
+                </Grid>
+                <!--END ADD EDIT BUTTON FIELDS-->
+            </Grid>
+            <!--END ATTACHMENT FIELDS-->
+            <!--NOTE TEXT-->
+            <Grid Grid.Row="1" Grid.Column="0" Background="#fffff0" Margin="3" Grid.IsSharedSizeScope="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="RW Comments" Margin="10 0 10 0" Grid.Row="0" Grid.Column="0"/>
+                <TextBox Grid.Column="0" Grid.Row="1" Margin="10" TextWrapping="Wrap" AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Visible"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" Background="#fffff0" Margin="3" Grid.IsSharedSizeScope="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="F/U Notes" Margin="10 0 10 0" Grid.Row="0" Grid.Column="1"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Margin="10" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+            </Grid>
+        </Grid>
+</UserControl>
